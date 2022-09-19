@@ -1,0 +1,23 @@
+
+
+select sub2.project_id from  
+(select count(w.worker_id) as countmale,project_id
+from workers as w
+join project_worker as pw
+on w.Worker_id=pw.worker_id
+where gender='m'
+group by project_id) as sub1,
+(select count(w.worker_id) as countfemale,project_id
+from workers as w
+join project_worker as pw
+on w.Worker_id=pw.worker_id
+where gender='f'
+group by project_id) as sub2
+where countfemale>countmale;
+
+select count(w.worker_id) as countmale,project_id
+from workers as w
+join project_worker as pw
+on w.Worker_id=pw.worker_id
+where gender='m'
+group by project_id;
